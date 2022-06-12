@@ -68,7 +68,7 @@ void Enemy::move_enemy() {
 void Enemy::erase_enemy() {
 	for (int i = 0; i < e.size(); i++) {
 		if (e[i].first.getPosition().y > Height) {
-			e.erase(e.begin());
+			e.erase(e.begin()+i);
 		}
 	}
 }
