@@ -23,7 +23,7 @@ void Bullet::generate_bullet(RenderWindow &window,float x_pos,float y_pos) {
 		//last.setSize(Vector2f(3, 10));
 		last.setPosition(Vector2f(x_pos, y_pos));
 		//No. of bullets on the screen
-		if (bullet.size() <= 8) {
+		if (bullet.size() <= 10) {
 			bullet.push_back(last);
 		}
 		clock.restart();
@@ -33,16 +33,14 @@ void Bullet::generate_bullet(RenderWindow &window,float x_pos,float y_pos) {
 void Bullet::update(RenderWindow &window) {	
 	for (int i = 0; i < bullet.size(); i++) {
 		bullet[i].move(0, -5);
-		if (bullet[i].getPosition().y < 5) {
-			bullet.erase(bullet.begin());
+		if (bullet[i].getPosition().y < -10) {
+			bullet.erase(bullet.begin()+i);
 		}
 	}
 }
 void Bullet::draw(RenderWindow &window) {
 	update(window);
 	for (int i = 0; i < bullet.size(); i++) {
-		if (bullet[i].getPosition().y > 0) {
-			window.draw(bullet[i]);
-		}
+		window.draw(bullet[i]);
 	}
 }

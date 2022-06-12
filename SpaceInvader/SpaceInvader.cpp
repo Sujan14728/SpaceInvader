@@ -101,7 +101,7 @@ int main() {
 						bullet.bullet.erase(bullet.bullet.begin() + j);
 					}
 					
-					
+          
 				}
 			}
 		}
