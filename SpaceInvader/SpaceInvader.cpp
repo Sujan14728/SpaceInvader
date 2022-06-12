@@ -67,10 +67,10 @@ int main() {
 				score.update_bullets();
 			}
 		}
-
+		
 		//enemy fires bullet
 		for (int i = 0; i < enemy.e.size(); i++) {
-			if (i % 5 == 0) {
+			if (i % 5 == 0 && enemy.e[i].second == 1) {
 				bullet_x = enemy.e[i].first.getPosition().x + 15;
 				bullet_y = enemy.e[i].first.getPosition().y + 10;
 				e_bullet.generate_bullet(window,bullet_x,bullet_y);
@@ -90,21 +90,29 @@ int main() {
 		for (int i = 0; i < enemy.e.size(); i++) {
 			for (int j = 0; j < bullet.bullet.size(); j++) {
 				if (collision(enemy.e[i].first,bullet.bullet[j])) {
-					enemy.e.erase(enemy.e.begin()+i);
-					bullet.bullet.erase(bullet.bullet.begin()+j);
-					score.update_score();
-					score.update_bullets(1);
+
+					enemy.e[i].second -= 2;
+					if (enemy.e[i].second <= 0) {
+						enemy.e.erase(enemy.e.begin() + i);
+						bullet.bullet.erase(bullet.bullet.begin() + j);
+						score.update_score();
+						score.update_bullets(1);
+					}
+					else {
+						bullet.bullet.erase(bullet.bullet.begin() + j);
+					}
+					
+					
 				}
 			}
 		}
 
-		//collision between player and enemy's bullet.
-		for (int i = 0; i < e_bullet.bullet.size(); i++) {
-			if (collision(player.player, e_bullet.bullet[i])) {
-				e_bullet.bullet.erase(e_bullet.bullet.begin() + i);
-				score.update_lives();
-			}
-		}
+		
+
+
+		
+
+
 
 		enemy.create_enemy();
 		window.clear();
