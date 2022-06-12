@@ -45,6 +45,7 @@ int main() {
 	float bullet_x;
 	float bullet_y;
 
+	int wave = 1;
 
 	while (window.isOpen()) {
 		Event event;
@@ -100,17 +101,18 @@ int main() {
 					else {
 						bullet.bullet.erase(bullet.bullet.begin() + j);
 					}
-					
-          
 				}
 			}
 		}
 
-		
 
-		// hello sujan don
-		
-		//Hello Yashwan poo
+		//collision between player and enemy's bullet
+		for (int i = 0; i < e_bullet.bullet.size(); i++) {
+			if (collision(e_bullet.bullet[i], player.player)) {
+				e_bullet.bullet.erase(e_bullet.bullet.begin() + i);
+				score.update_lives();
+			}
+		}
 
 
 		enemy.create_enemy();
@@ -127,6 +129,11 @@ int main() {
 
 		//scoreboard
 		score.draw(window);
+		score.update_wave(enemy.wave);
+		if (enemy.wave > wave) {
+			wave = enemy.wave;
+			score.update_bullets(20);
+		}
 
 		window.display();
 	}
