@@ -132,7 +132,7 @@ int main() {
 		score.update_wave(enemy.wave);
 		if (enemy.wave > wave) {
 			wave = enemy.wave;
-			score.update_bullets(20);
+			score.update_bullets(10);
 		}
 
 		window.display();
