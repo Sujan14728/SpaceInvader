@@ -12,10 +12,13 @@
 
 
 
+
 //  Sujan guuu
+
 
 using namespace sf;
 using namespace std;
+
 int width = 600;
 int height = 400;
 
@@ -78,16 +81,16 @@ int main() {
 		//collision between enemy and player
 		for (int i = 0; i < enemy.e.size(); i++) {
 			if (collision(player.player, enemy.e[i].first)) {
-				enemy.e.erase(enemy.e.begin());
-				//score.update_lives();
+				enemy.e.erase(enemy.e.begin()+i);
+				score.update_lives();
 			}
 		}
 
 		//collision between enemy and player's bullet.
-		
 		for (int i = 0; i < enemy.e.size(); i++) {
 			for (int j = 0; j < bullet.bullet.size(); j++) {
 				if (collision(enemy.e[i].first,bullet.bullet[j])) {
+
 					enemy.e[i].second -= 2;
 					if (enemy.e[i].second <= 0) {
 						enemy.e.erase(enemy.e.begin() + i);
@@ -110,6 +113,7 @@ int main() {
 		
 
 
+
 		enemy.create_enemy();
 		window.clear();
 
@@ -121,12 +125,9 @@ int main() {
 		player.update();
 
 		enemy.draw(window);
-		
 
 		//scoreboard
 		score.draw(window);
-
-		
 
 		window.display();
 	}
