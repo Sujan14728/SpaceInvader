@@ -12,6 +12,7 @@
 
 using namespace sf;
 using namespace std;
+
 int width = 600;
 int height = 400;
 
@@ -74,13 +75,12 @@ int main() {
 		//collision between enemy and player
 		for (int i = 0; i < enemy.e.size(); i++) {
 			if (collision(player.player, enemy.e[i].first)) {
-				enemy.e.erase(enemy.e.begin());
-				//score.update_lives();
+				enemy.e.erase(enemy.e.begin()+i);
+				score.update_lives();
 			}
 		}
 
 		//collision between enemy and player's bullet.
-		
 		for (int i = 0; i < enemy.e.size(); i++) {
 			for (int j = 0; j < bullet.bullet.size(); j++) {
 				if (collision(enemy.e[i].first,bullet.bullet[j])) {
@@ -93,27 +93,12 @@ int main() {
 		}
 
 		//collision between player and enemy's bullet.
-		/*for (int i = 0; i < enemy.e.size(); i++) {
-			for (int j = 0; j < bullet.bullet.size(); j++) {
-				if (collision(enemy.e[i].first, bullet.bullet[j])) {
-					enemy.e.erase(enemy.e.begin() + i);
-					
-					
-				}
+		for (int i = 0; i < e_bullet.bullet.size(); i++) {
+			if (collision(player.player, e_bullet.bullet[i])) {
+				e_bullet.bullet.erase(e_bullet.bullet.begin() + i);
+				score.update_lives();
 			}
-		}*/
-
-
-		/*for (auto element_e : enemy.e) {
-			for (auto element_b : bullet.bullet) {
-				if (collision_enemy_and_bullet(element_e.first,element_b)) {
-					enemy.e.erase(element_e.first);
-					bullet.bullet.erase(bullet.bullet.begin());
-					score.update_score();
-				}
-			}
-		}*/
-
+		}
 
 		enemy.create_enemy();
 		window.clear();
@@ -126,12 +111,9 @@ int main() {
 		player.update();
 
 		enemy.draw(window);
-		
 
 		//scoreboard
 		score.draw(window);
-
-		
 
 		window.display();
 	}
