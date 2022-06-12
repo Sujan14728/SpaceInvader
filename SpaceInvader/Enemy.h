@@ -32,6 +32,7 @@ public:
 	//vector<RectangleShape> e;
 
 	int size = e.size();
+	int wave = 1;
 private:
 	int enemy_types[5] = { 0,1,2,3,4 };
 	float enemy_1_speed = 0.3;
@@ -39,7 +40,6 @@ private:
 	float enemy_3_speed = 0.3;
 	float enemy_4_speed = 0.3;
 	float boss_speed = 0.3;
-	int wave = 1;
 
 	float Width;
 	float Height;

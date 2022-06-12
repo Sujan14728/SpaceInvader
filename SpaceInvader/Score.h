@@ -21,7 +21,7 @@ public:
 	void update_lives(int n=-1);
 
 	void display_wave(RenderWindow &window);
-	void update_wave(int n = 1);
+	void update_wave(int n);
 
 	void display_bullets(RenderWindow &window);
 	void update_bullets(int n = -1);

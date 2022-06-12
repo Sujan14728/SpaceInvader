@@ -45,6 +45,7 @@ int main() {
 	float bullet_x;
 	float bullet_y;
 
+	int wave = 1;
 
 	while (window.isOpen()) {
 		Event event;
@@ -56,7 +57,7 @@ int main() {
 		}
 
 		//player fire bullets when up key is pressed
-		if (Keyboard::isKeyPressed(Keyboard::Up)) {
+		if (Keyboard::isKeyPressed(Keyboard::Space)) {
 			bullet_x = player.player.getPosition().x + 11 ;
 			bullet_y = player.player.getPosition().y -1;
 			bullet.generate_bullet(window, bullet_x,bullet_y);
@@ -70,7 +71,7 @@ int main() {
 		
 		//enemy fires bullet
 		for (int i = 0; i < enemy.e.size(); i++) {
-			if (i % 5 == 0 && enemy.e[i].second == 1) {
+			if (i % 2 == 0 && enemy.e[i].second == 1) {
 				bullet_x = enemy.e[i].first.getPosition().x + 15;
 				bullet_y = enemy.e[i].first.getPosition().y + 10;
 				e_bullet.generate_bullet(window,bullet_x,bullet_y);
@@ -90,7 +91,6 @@ int main() {
 		for (int i = 0; i < enemy.e.size(); i++) {
 			for (int j = 0; j < bullet.bullet.size(); j++) {
 				if (collision(enemy.e[i].first,bullet.bullet[j])) {
-
 					enemy.e[i].second -= 2;
 					if (enemy.e[i].second <= 0) {
 						enemy.e.erase(enemy.e.begin() + i);
@@ -101,17 +101,18 @@ int main() {
 					else {
 						bullet.bullet.erase(bullet.bullet.begin() + j);
 					}
-					
-					
 				}
 			}
 		}
 
-		
 
-
-		
-
+		//collision between player and enemy's bullet
+		for (int i = 0; i < e_bullet.bullet.size(); i++) {
+			if (collision(e_bullet.bullet[i], player.player)) {
+				e_bullet.bullet.erase(e_bullet.bullet.begin() + i);
+				score.update_lives();
+			}
+		}
 
 
 		enemy.create_enemy();
@@ -128,6 +129,11 @@ int main() {
 
 		//scoreboard
 		score.draw(window);
+		score.update_wave(enemy.wave);
+		if (enemy.wave > wave) {
+			wave = enemy.wave;
+			score.update_bullets(20);
+		}
 
 		window.display();
 	}

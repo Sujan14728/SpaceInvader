@@ -10,7 +10,7 @@ Enemy::Enemy(float width, float height) {
 void Enemy::create_enemy() {
 	time = clock.getElapsedTime();
 	size = e.size();
-	if (time.asSeconds() > 1 && time.asSeconds() < 47) {
+	if (time.asSeconds() > 1 && time.asSeconds() < 53) {
 		if (e.size() < time.asSeconds() * 0.5 && e.size() < 8) {
 			int e_number = wave;
 
@@ -34,7 +34,7 @@ void Enemy::create_enemy() {
 			}
 		}
 	}
-	if (time.asSeconds() > 50) {
+	if (time.asSeconds() > 60) {
 		wave++;
 		clock.restart();
 	}
