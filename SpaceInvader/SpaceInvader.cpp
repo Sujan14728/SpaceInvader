@@ -57,7 +57,7 @@ int main() {
 		}
 
 		//player fire bullets when up key is pressed
-		if (Keyboard::isKeyPressed(Keyboard::Up)) {
+		if (Keyboard::isKeyPressed(Keyboard::Space)) {
 			bullet_x = player.player.getPosition().x + 11 ;
 			bullet_y = player.player.getPosition().y -1;
 			bullet.generate_bullet(window, bullet_x,bullet_y);
