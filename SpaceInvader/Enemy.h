@@ -13,8 +13,8 @@ public:
 	Enemy(float width, float height);
 	void draw(sf::RenderWindow& window);
 	void enemy1();
-	/*void enemy2();
-	void enemy3();
+	void enemy2();
+	/*void enemy3();
 	void enemy4();
 	void boss();*/
 
@@ -25,6 +25,7 @@ public:
 	void move_enemy();
 	void create_enemy();
 	void erase_enemy();
+
 	Texture texture;
 	std::vector<pair<sf::Sprite, int>> e;
 	//vector<RectangleShape> e;
