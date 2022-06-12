@@ -64,7 +64,7 @@ int main() {
 				score.update_bullets();
 			}
 		}
-
+		
 		//enemy fires bullet
 		for (int i = 0; i < enemy.e.size(); i++) {
 			if (i % 5 == 0 && enemy.e[i].second == 1) {
