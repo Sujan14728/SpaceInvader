@@ -70,7 +70,7 @@ int main() {
 		
 		//enemy fires bullet
 		for (int i = 0; i < enemy.e.size(); i++) {
-			if (i % 5 == 0 && enemy.e[i].second == 1) {
+			if (i % 2 == 0 && enemy.e[i].second == 1) {
 				bullet_x = enemy.e[i].first.getPosition().x + 15;
 				bullet_y = enemy.e[i].first.getPosition().y + 10;
 				e_bullet.generate_bullet(window,bullet_x,bullet_y);
