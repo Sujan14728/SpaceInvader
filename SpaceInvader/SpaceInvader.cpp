@@ -90,8 +90,8 @@ int main() {
 		for (int i = 0; i < enemy.e.size(); i++) {
 			for (int j = 0; j < bullet.bullet.size(); j++) {
 				if (collision(enemy.e[i].first,bullet.bullet[j])) {
-					enemy.e.erase(enemy.e.begin()+i);
 					bullet.bullet.erase(bullet.bullet.begin()+j);
+					enemy.e.erase(enemy.e.begin()+i);
 					score.update_score();
 					score.update_bullets(1);
 				}
