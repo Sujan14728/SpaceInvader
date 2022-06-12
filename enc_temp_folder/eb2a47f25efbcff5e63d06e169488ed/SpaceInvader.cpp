@@ -90,6 +90,7 @@ int main() {
 		for (int i = 0; i < enemy.e.size(); i++) {
 			for (int j = 0; j < bullet.bullet.size(); j++) {
 				if (collision(enemy.e[i].first,bullet.bullet[j])) {
+
 					enemy.e[i].second -= 2;
 					if (enemy.e[i].second <= 0) {
 						enemy.e.erase(enemy.e.begin() + i);
