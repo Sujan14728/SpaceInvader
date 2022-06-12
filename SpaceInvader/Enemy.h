@@ -14,9 +14,9 @@ public:
 	void draw(sf::RenderWindow& window);
 	void enemy1();
 	void enemy2();
-	/*void enemy3();
+	void enemy3();
 	void enemy4();
-	void boss();*/
+	void boss();
 
 
 	/*void fire_bullet(float x, float y);
@@ -26,7 +26,8 @@ public:
 	void create_enemy();
 	void erase_enemy();
 
-	Texture texture;
+	Texture texture1;
+	Texture texture2;
 	std::vector<pair<sf::Sprite, int>> e;
 	//vector<RectangleShape> e;
 

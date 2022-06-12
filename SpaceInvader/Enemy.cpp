@@ -14,8 +14,8 @@ void Enemy::create_enemy() {
 		if (e.size() < time.asSeconds() * 0.5 && e.size() < 8) {
 			int e_number = wave;
 
-			if (e_number > 2) {
-				e_number = 2;
+			if (e_number > 4) {
+				e_number = 4;
 			}
 
 			int e_type = (rand() % e_number);
@@ -25,13 +25,13 @@ void Enemy::create_enemy() {
 			}
 			else if (e_type == 1) {
 				enemy2();
-			}/*
+			}
 			else if (e_type == 2) {
 				enemy3();
 			}
 			else if (e_type == 3) {
 				enemy4();
-			}*/
+			}
 		}
 	}
 	if (time.asSeconds() > 50) {
@@ -43,11 +43,11 @@ void Enemy::create_enemy() {
 
 void Enemy::enemy1() {
 	if (size == e.size()) {
-		if (!texture.loadFromFile("Texture/enemy1.jpg")) {
+		if (!texture1.loadFromFile("Texture/enemy1.jpg")) {
 			cout << "Could not load player texture" << endl;
 		}
 		sf::Sprite en;
-		en.setTexture(texture);
+		en.setTexture(texture1);
 		float x = rand() % ((int)Width - 5);
 		float y = -1 * rand() % ((int)100);
 		en.setPosition(Vector2f(x, y));
@@ -57,13 +57,14 @@ void Enemy::enemy1() {
 	}
 }
 
+
 void Enemy::enemy2() {
 	if (size == e.size()) {
-		if (!texture.loadFromFile("Texture/enemy1.jpg")) {
+		if (!texture2.loadFromFile("Texture/enemy2.jpg")) {
 			cout << "Could not load player texture" << endl;
 		}
 		sf::Sprite en;
-		en.setTexture(texture);
+		en.setTexture(texture2);
 		float x = rand() % ((int)Width - 5);
 		float y = -1 * rand() % ((int)100);
 		en.setPosition(Vector2f(x, y));
@@ -74,9 +75,41 @@ void Enemy::enemy2() {
 }
 
 
+void Enemy::enemy3() {
+	if (size == e.size()) {
+		if (!texture1.loadFromFile("Texture/enemy1.jpg")) {
+			cout << "Could not load player texture" << endl;
+		}
+		sf::Sprite en;
+		en.setTexture(texture1);
+		float x = rand() % ((int)Width - 5);
+		float y = -1 * rand() % ((int)100);
+		en.setPosition(Vector2f(x, y));
+		en.setScale(Vector2f(0.08, 0.08));
+
+		e.push_back(std::make_pair(en, 4));
+	}
+}
+
+void Enemy::enemy4() {
+	if (size == e.size()) {
+		if (!texture2.loadFromFile("Texture/enemy2.jpg")) {
+			cout << "Could not load player texture" << endl;
+		}
+		sf::Sprite en;
+		en.setTexture(texture2);
+		float x = rand() % ((int)Width - 5);
+		float y = -1 * rand() % ((int)100);
+		en.setPosition(Vector2f(x, y));
+		en.setScale(Vector2f(0.08, 0.08));
+
+		e.push_back(std::make_pair(en, 3));
+	}
+}
+
 void Enemy::move_enemy() {
 	for (int i = 0; i < e.size(); i++) {
-		e[i].first.move(0, 2 * (wave*0.5));
+		e[i].first.move(0, std::max((float)2,(float)(wave*0.5)));
 	}
 }
 
