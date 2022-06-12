@@ -72,7 +72,7 @@ void Score::display_wave(RenderWindow &window) {
 }
 
 void Score::update_wave(int n) {
-	wave = wave + 1;
+	wave = n;
 }
 
 void Score::display_bullets(RenderWindow &window) {

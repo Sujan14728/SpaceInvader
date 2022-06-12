@@ -4,15 +4,12 @@ Bullet::Bullet() {
 	
 }
 
-
 Bullet::~Bullet() {
-
 }
 
 void Bullet::generate_bullet(RenderWindow &window,float x_pos,float y_pos) {
 	time = clock.getElapsedTime();
 	if (time.asMilliseconds() >= 200) {
-
 		if (!texture.loadFromFile("Texture/bullet3.jfif")) {
 			cout << "Could not load player texture" << endl;
 		}
